@@ -22,8 +22,10 @@ const itemsPerPage = 10;
 // button making
 const div = document.getElementsByClassName('page-header')[0];
 const divSearch = document.createElement('div');
-const message = document.createElement('h2');
+const message = document.createElement('h3');
 message.textContent = 'No results found';
+message.style.color = 'red';
+message.style.paddingTop = '8px'
 var searchResult = [];
 
    const searchInput = document.createElement('input');
@@ -53,10 +55,10 @@ searchInput.addEventListener('keyup', () =>{
 
    }
    if(searchResult.length === 0){
-      div.appendChild(message);
+      divSearch.appendChild(message);
    }
    else{
-      div.removeChild(message);
+      divSearch.removeChild(message);
    }
    appendPageLinks(searchResult);
    showPage(searchResult,1);
