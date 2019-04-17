@@ -36,6 +36,8 @@ var searchResult = [];
 
    divSearch.appendChild(searchInput);
    divSearch.appendChild(searchButton);
+   divSearch.appendChild(message);
+   message.style.display = 'none';
    div.appendChild(divSearch);
 
    const names = document.getElementsByClassName('student-list')[0].getElementsByTagName('h3');
@@ -55,10 +57,10 @@ searchInput.addEventListener('keyup', () =>{
 
    }
    if(searchResult.length === 0){
-      divSearch.appendChild(message);
+      message.style.display = '';
    }
    else{
-      divSearch.removeChild(message);
+      message.style.display = 'none';
    }
    appendPageLinks(searchResult);
    showPage(searchResult,1);
@@ -66,46 +68,25 @@ searchInput.addEventListener('keyup', () =>{
 } )
 
 
-   
-/* <div class="student-search">
-          <input placeholder="Search for students...">
-          <button>Search</button>
-        </div> */
+
 
 
 /*** 
-   Create the `showPage` function to hide all of the items in the 
-   list except for the ten you want to show.
-
-   Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when 
-       you initially define the function, and it acts as a variable 
-       or a placeholder to represent the actual function `argument` 
-       that will be passed into the parens later when you call or 
-       "invoke" the function 
+   This function selects a maximum of 10 students according to the list array and page number
+   and display them.
 ***/
 function showPage(list,page){
    const startIndex = page*itemsPerPage - itemsPerPage;
    const endIndex = page*itemsPerPage;
-   for (let i = 0; i< list.length; i++){
+   for (let i = 0; i< listItem.length; i++){
       list[i].style.display = 'none';
       if (i >= startIndex && i < endIndex){
          list[i].style.display = '';
       }
-      
    }
-   
 }
 
-/// Initialize the pagination
-function init(){
-   showPage(listItem,1);
-   appendPageLinks(listItem);
-   searchResult = listItem;
-}
+
 
 
 /*** 
@@ -145,6 +126,13 @@ function appendPageLinks(list){
    
 
    
+}
+
+/// Initialize the pagination
+function init(){
+   showPage(listItem,1);
+   appendPageLinks(listItem);
+   searchResult = listItem;
 }
 
 ul.addEventListener('click', (e)=>{
