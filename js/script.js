@@ -22,7 +22,6 @@ const searchButton = document.createElement('button');
 const names = document.getElementsByClassName('student-list')[0].getElementsByTagName('h3');
 var searchResult = [];
 
-   
 searchInput.setAttribute('placeholder', 'Search for students...');
 searchButton.textContent = 'Search';
 divPagination.appendChild(ul);
